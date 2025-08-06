@@ -18,6 +18,7 @@ struct solution
     int len;
     COMPLEX x[2];
     MESSAGE *msg;
+    ERROR *err;
 };
 
 /**
@@ -28,8 +29,8 @@ POLYNOMIAL PFactory(const char* s);
 
 /**
  */
-SOLUTION PSolve
-
+SOLUTION PSolve(const POLYNOMIAL p);
+void SPrint(const SOLUTION s);
 
 struct message
 {
@@ -41,6 +42,7 @@ struct message
  */
 void MPrintAll(const MESSAGE *m);
 
+int ELen(const ERROR *e);
 
 
 struct complex{

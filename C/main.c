@@ -3,17 +3,21 @@
 
 const char* USAGE_ERROR = "<USAGE> ./computor \"5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0\"";
 
-inline 
-
 int main(int ac, char **av) {
     if (ac != 1) {
-        fprintf("stdout", USAGE_ERROR);
+        fprintf(stdout,"%s\n", USAGE_ERROR);
         return 1;
     }
-    POLYNOMIAL p = Pfactory(av[1]);
-    if (p.errlen) {
-        return (Pperror(p));
+    POLYNOMIAL p = PFactory(av[1]);
+    if (ELen(p.err)) {
+        MPrintAll(p.err);
+        return 1;
     }
-
+    SOLUTION s = PSolve(p);
+    if (ELen(p.err)) {
+        MPrintAll(p.err);
+        return 1;
+    } 
+    SPrint(s);
     return 0;
 }
